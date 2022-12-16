@@ -4,14 +4,16 @@ import { Link, Outlet, useMatch } from "react-router-dom";
 const SongList = (props) => {
   // 경로의 패턴을 비교한다.
   const pathMatch = useMatch("/songs/:id");
-  let pathMatchId;
+  let pathMatchId = -1;
   if (pathMatch) {
     pathMatchId = pathMatch.params.id ? parseInt(pathMatch.params.id, 10) : -1;
   }
-  // pathMatch.params : 파라메터 {id: '7'}
+  // pathMatch.params   : 파라메터  {id: '7'}
   // pathMatch.pathname : 요청경로 "/songs/7"
   // pathMatch.pathnameBase : 주소창 "/songs/7"
-  // pathMatch.pattern : 패턴을 출력 {}
+  // pathMatch.pattern     : 패턴을 출력 {}
+  // console.log(pathMatch);
+
   const list = props.songs.map((item) => {
     return (
       <li
