@@ -10,7 +10,8 @@ import SongList from "./pages/SongList";
 // import SongDetail from "./pages/SongDetail";
 import Player from "./pages/Player";
 import PlayerIndex from "./pages/PlayerIndex";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NotFound from "./pages/NotFound";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 const App = () => {
   // 멤버목록 데이터
@@ -48,13 +49,15 @@ const App = () => {
         <Routes>
           {/* <Route path="개발자가 설정한 URL" /> */}
           {/* <Route path=" : 도메인만 입력" /> element={보여줄 컴포넌트 엘리먼트} */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About title="인디밴드" />} />
           <Route path="/members" element={<Members members={members} />} />
           <Route path="/songs" element={<SongList songs={songs} />}>
             <Route index element={<PlayerIndex />} />
             <Route path=":id" element={<Player songs={songs} />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
           {/* <Route path="/songs/:id" element={<SongDetail songs={songs} />} /> */}
         </Routes>
       </div>
